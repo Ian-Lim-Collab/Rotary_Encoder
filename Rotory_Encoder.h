@@ -1,7 +1,8 @@
 #pragma once 
 #include "mbed.h"
 
-#define ROTORY_ENCODER_DEBOUNCE_PERIOD 5000us
+#define ROTORY_ENCODER_ROTORY_DEBOUNCE_PERIOD 1500us
+#define ROTORY_ENCODER_BUTTON_DEBOUNCE_PERIOD 50000us
 
 class Rotory_Encoder
 {
@@ -18,6 +19,7 @@ protected:
 
     void encoder_A_ISR_callback();
     void button_rise_callback();
+    void button_fall_callback();
 public:
     Rotory_Encoder(PinName encoder_A_pin, PinName encoder_B_pin, PinName button_pin);
     uint8_t get_rotory_state();

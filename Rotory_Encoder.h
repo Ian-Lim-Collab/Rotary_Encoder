@@ -1,7 +1,7 @@
 #pragma once 
 #include "mbed.h"
 
-#define ROTORY_ENCODER_DEBOUNCE_PERIOD 1500us
+#define ROTORY_ENCODER_DEBOUNCE_PERIOD 5000us
 
 class Rotory_Encoder
 {
@@ -10,7 +10,8 @@ protected:
     InterruptIn encoder_A;
     DigitalIn encoder_B;
     InterruptIn button;
-    Ticker debounce_period;
+    Timer rotor_debounce_period;
+    Timer button_debounce_period;
 
     uint8_t encoder_state;
     bool btn_state;

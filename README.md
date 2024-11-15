@@ -1,4 +1,4 @@
-# Rotory_Encoder
+# Rotary_Encoder
 This library is a rotary encoder using interrupts
 
 ## Example Code
@@ -7,9 +7,9 @@ This library is a rotary encoder using interrupts
 #include "Rotary_Encoder.h"
 
 int main(){
-    Rotory_Encoder rot(PA_1, PA_4,PC_13);
+    Rotary_Encoder rot(PA_1, PA_4,PC_13);
     while(true){
-        printf("Rotary Encoder State: %d\n",rot.get_rotory_state());
+        printf("Rotary Encoder State: %d\n",rot.get_rotary_state());
     }
 }
 ```

@@ -1,10 +1,10 @@
 #pragma once 
 #include "mbed.h"
 
-#define ROTORY_ENCODER_ROTORY_DEBOUNCE_PERIOD 1500us
-#define ROTORY_ENCODER_BUTTON_DEBOUNCE_PERIOD 50000us
+#define ROTARY_ENCODER_ROTARY_DEBOUNCE_PERIOD 1500us
+#define ROTARY_ENCODER_BUTTON_DEBOUNCE_PERIOD 50000us
 
-class Rotory_Encoder
+class Rotary_Encoder
 {
 protected:
     /* data */
@@ -21,8 +21,8 @@ protected:
     void button_rise_callback();
     void button_fall_callback();
 public:
-    Rotory_Encoder(PinName encoder_A_pin, PinName encoder_B_pin, PinName button_pin);
-    uint8_t get_rotory_state();
+    Rotary_Encoder(PinName encoder_A_pin, PinName encoder_B_pin, PinName button_pin);
+    uint8_t get_rotary_state();
     bool get_btn_state();
 };
 

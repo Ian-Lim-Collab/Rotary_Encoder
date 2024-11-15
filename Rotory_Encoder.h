@@ -1,13 +1,16 @@
 #pragma once 
 #include "mbed.h"
 
-class Rotory_Encodery
+#define ROTORY_ENCODER_DEBOUNCE_PERIOD 1500us
+
+class Rotory_Encoder
 {
 protected:
     /* data */
     InterruptIn encoder_A;
     DigitalIn encoder_B;
     InterruptIn button;
+    Ticker debounce_period;
 
     uint8_t encoder_state;
     bool btn_state;

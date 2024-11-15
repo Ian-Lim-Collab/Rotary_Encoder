@@ -9,7 +9,7 @@ This library is a rotary encoder using interrupts
 int main(){
     Rotary_Encoder rot(PA_1, PA_4,PC_13);
     while(true){
-        printf("Rotary Encoder State: %d\n",rot.get_rotary_state());
+        printf("Rotary Encoder State: %d Button State: %d\n",rot.get_rotary_state(),rot.get_btn_state());
     }
 }
 ```

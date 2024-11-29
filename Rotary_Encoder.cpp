@@ -38,9 +38,21 @@ void Rotary_Encoder::button_fall_callback(){
 }
 
 uint8_t Rotary_Encoder::get_rotary_state(){
-    return encoder_state / 2;
+    return encoder_state >> 1;
 };
 
 bool Rotary_Encoder::get_btn_state(){
     return btn_state;
+};
+
+void Rotary_Encoder::reset_rotary_state(){
+    encoder_state = 0;
+};
+
+void Rotary_Encoder::reset_btn_state(){
+    btn_state = false;
+};
+
+void Rotary_Encoder::set_rotary_state(uint16_t state){
+    encoder_state = state << 1;
 };

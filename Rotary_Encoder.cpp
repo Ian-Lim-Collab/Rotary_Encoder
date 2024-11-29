@@ -38,7 +38,8 @@ void Rotary_Encoder::button_fall_callback(){
     this->button_debounce_period.start();
 }
 
-uint8_t Rotary_Encoder::get_rotary_state(){
+uint8_t Rotary_Encoder::get_rotary_state(){ 
+    encoder_state = encoder_state > encoder_cap_state ? encoder_cap_state : encoder_state;
     return encoder_state >> 2;
 };
 
@@ -57,3 +58,7 @@ void Rotary_Encoder::reset_btn_state(){
 void Rotary_Encoder::set_rotary_state(uint16_t state){
     encoder_state = state << 2;
 };  
+
+void Rotary_Encoder::set_rotary_state_cap(uint16_t state){
+    this->encoder_cap_state = (state - 1) << 2 ;
+};

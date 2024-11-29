@@ -9,7 +9,7 @@ class Rotary_Encoder
 protected:
     /* data */
     InterruptIn encoder_A;
-    DigitalIn encoder_B;
+    InterruptIn encoder_B;
     InterruptIn button;
     Timer rotor_debounce_period;
     Timer button_debounce_period;
@@ -17,7 +17,7 @@ protected:
     uint16_t encoder_state;
     bool btn_state;
 
-    void encoder_A_ISR_callback();
+    void encoder_ISR_callback();
     void button_rise_callback();
     void button_fall_callback();
 public:

@@ -18,7 +18,8 @@ protected:
     uint16_t encoder_cap_state;
     bool btn_state;
 
-    void encoder_ISR_callback();
+    void encoder_A_ISR_callback();
+    void encoder_B_ISR_callback();
     void button_rise_callback();
     void button_fall_callback();
 public:

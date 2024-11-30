@@ -14,29 +14,29 @@ Rotary_Encoder::Rotary_Encoder(PinName encoder_A_pin, PinName encoder_B_pin, Pin
 };
 
 void Rotary_Encoder::encoder_A_ISR_callback(){
-    this->rotor_debounce_period.stop();
-    if(this->rotor_debounce_period.elapsed_time() > ROTARY_ENCODER_ROTARY_DEBOUNCE_PERIOD){
+    this->rotor_a_debounce_period.stop();
+    if(this->rotor_a_debounce_period.elapsed_time() > ROTARY_ENCODER_ROTARY_DEBOUNCE_PERIOD){
         if (encoder_B != encoder_A) {
             encoder_state++;
         } else {
             encoder_state--;
         }
     }
-    this->rotor_debounce_period.reset();
-    this->rotor_debounce_period.start();
+    this->rotor_a_debounce_period.reset();
+    this->rotor_a_debounce_period.start();
 };
 
 void Rotary_Encoder::encoder_B_ISR_callback(){
-    this->rotor_debounce_period.stop();
-    if(this->rotor_debounce_period.elapsed_time() > ROTARY_ENCODER_ROTARY_DEBOUNCE_PERIOD){
+    this->rotor_b_debounce_period.stop();
+    if(this->rotor_b_debounce_period.elapsed_time() > ROTARY_ENCODER_ROTARY_DEBOUNCE_PERIOD){
         if (encoder_B != encoder_A) {
             encoder_state--;
         } else {
             encoder_state++;
         }
     }
-    this->rotor_debounce_period.reset();
-    this->rotor_debounce_period.start();
+    this->rotor_b_debounce_period.reset();
+    this->rotor_b_debounce_period.start();
 };
 
 void Rotary_Encoder::button_rise_callback(){
@@ -51,7 +51,7 @@ void Rotary_Encoder::button_fall_callback(){
     this->button_debounce_period.start();
 }
 
-uint8_t Rotary_Encoder::get_rotary_state(){ 
+uint16_t Rotary_Encoder::get_rotary_state(){ 
     encoder_state = encoder_state > encoder_cap_state ? encoder_cap_state : encoder_state;
     return encoder_state >> 2;
 };
@@ -73,5 +73,5 @@ void Rotary_Encoder::set_rotary_state(uint16_t state){
 };  
 
 void Rotary_Encoder::set_rotary_state_cap(uint16_t state){
-    this->encoder_cap_state = (state - 1) << 2 ;
+    this->encoder_cap_state = (state) << 2 ;
 };

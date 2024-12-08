@@ -17,6 +17,7 @@ protected:
 
     uint16_t encoder_cap_state  = (1 << 16) -1;
     bool btn_state;
+    bool underflow_enabled = false;
 
     void encoder_A_ISR_callback();
     void encoder_B_ISR_callback();
@@ -43,6 +44,9 @@ public:
      * @param: state: the state cap
     */
     void set_rotary_state_cap(uint16_t state);
+
+    void disable_underflow();
+    void enable_underflow();
 };
 
 

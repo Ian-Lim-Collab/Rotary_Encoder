@@ -19,7 +19,7 @@ void Rotary_Encoder::encoder_A_ISR_callback(){
         if (encoder_B != encoder_A) {
             encoder_state++;
         } else {
-            encoder_state--;
+            encoder_state = encoder_state == 0 && !underflow_enabled ? 0 : encoder_state - 1;
         }
     }
     this->rotor_a_debounce_period.reset();
@@ -30,7 +30,7 @@ void Rotary_Encoder::encoder_B_ISR_callback(){
     this->rotor_b_debounce_period.stop();
     if(this->rotor_b_debounce_period.elapsed_time() > ROTARY_ENCODER_ROTARY_DEBOUNCE_PERIOD){
         if (encoder_B != encoder_A) {
-            encoder_state--;
+            encoder_state = encoder_state == 0 && !underflow_enabled ? 0 : encoder_state - 1;
         } else {
             encoder_state++;
         }
@@ -75,3 +75,12 @@ void Rotary_Encoder::set_rotary_state(uint16_t state){
 void Rotary_Encoder::set_rotary_state_cap(uint16_t state){
     this->encoder_cap_state = (state) << 2 ;
 };
+
+void Rotary_Encoder::disable_underflow(){
+    this->underflow_enabled = false;
+};
+
+void Rotary_Encoder::enable_underflow(){
+    this->underflow_enabled = true;
+};
+
